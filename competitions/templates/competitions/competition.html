@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Competition - {{ comp.name }}</title>
+</head>
+<body>
+    <h1>{{ comp.name }}</h1>
+    <h2>Challenges</h2>
+    {% if challenges %}
+        <ul>
+            {% for challenge in challenges %}
+                <li><a href="#">{{ challenge.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>nothing to hack :(</p>
+    {% endif %}
+</body>
+</html>

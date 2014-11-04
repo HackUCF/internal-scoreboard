@@ -9,5 +9,15 @@
 <body>
     <h1>Hack@UCF Internal Scoreboard</h1>
     <p>hack shit here</p>
+    <h2>Competitions</h2>
+    {% if competitions %}
+        <ul>
+            {% for comp in competitions %}
+                <li><a href="{{ comp.get_absolute_url }}">{{ comp.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>nothing to hack :(</p>
+    {% endif %}
 </body>
 </html>

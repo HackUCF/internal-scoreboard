@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'content.views.index')
+    url(r'^$', 'content.views.index'),
+    url(r'^competition/(?P<slug>[\w\d\-]+)/', 'competitions.views.competition', name='competitions.competition')
 )
