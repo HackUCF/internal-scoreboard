@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Competition - {{ comp.name }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Competition - {{ comp.name }}{% endblock %}
+{% block content %}
     <h1>{{ comp.name }}</h1>
     <h2>Challenges</h2>
     {% if challenges %}
@@ -16,5 +12,4 @@
     {% else %}
         <p>nothing to hack :(</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}

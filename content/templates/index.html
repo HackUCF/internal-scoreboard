@@ -1,23 +1,16 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Internal Scoreboard</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}"/>
-</head>
-<body>
-    <h1>Hack@UCF Internal Scoreboard</h1>
-    <p>hack things here</p>
-    <h2>Competitions</h2>
-    {% if competitions %}
-        <ul>
-            {% for comp in competitions %}
-                <li><a href="{{ comp.get_absolute_url }}">{{ comp.name }}</a></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>nothing to hack :(</p>
-    {% endif %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Internal Scoreboard{% endblock %}
+{% block content %}
+<h1>Hack@UCF Internal Scoreboard</h1>
+<p>hack things here</p>
+<h2>Competitions</h2>
+{% if competitions %}
+    <ul>
+        {% for comp in competitions %}
+            <li><a href="{{ comp.get_absolute_url }}">{{ comp.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>nothing to hack :(</p>
+{% endif %}
+{% endblock %}
