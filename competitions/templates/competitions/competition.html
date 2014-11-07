@@ -1,15 +1,26 @@
 {% extends 'base.html' %}
 {% block title %}Competition - {{ comp.name }}{% endblock %}
 {% block content %}
-    <h1>{{ comp.name }}</h1>
-    <section id="challenges">
-        <h2>Challenges</h2>
+    <h1>{{ comp.name }} {% if comp.internal %}<small class="internal">(Internal)</small>{% else %}<small class="external">(External)</small>{% endif %}</h1>
+    <section>
+        <h2 class="center">Challenges</h2>
         {% if challenges %}
-            <ul>
-                {% for challenge in challenges %}
-                    <li><a href="#">{{ challenge.name }}</a></li>
-                {% endfor %}
-            </ul>
+            <table id="challenges">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>category</th>
+                    <th>points</th>
+                </tr>
+            </thead>
+            {% for challenge in challenges %}
+                <tr>
+                    <td>{{ challenge.name }}</td>
+                    <td>{{ challenge.category }}</td>
+                    <td>{{ challenge.value }}</td>
+                </tr>
+            {% endfor %}
+            </table>
         {% else %}
             <p>nothing to hack :(</p>
         {% endif %}

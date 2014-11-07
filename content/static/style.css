@@ -13,10 +13,35 @@ nav li {
     display: inline-block;
 }
 
+/* utility classes */
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+/* page-specific stuff */
+
 .login-row {
     text-align: right;
 }
 
-#scoreboard > tbody tr:nth-child(1){
+table > thead {
+    background: #f5f5f5;
+    font-weight: bold;
+}
+
+table > tbody tr {
+    cursor: pointer;
+}
+
+table > tbody tr:nth-of-type(even) {
     background: #fafafa;
+}
+
+#challenges {
+    width: 500px;
+    margin: auto;
 }
