@@ -14,6 +14,13 @@ def scoreboard(request):
     return render_to_response('competitions/scoreboard.html', data, RequestContext(request))
 
 
+def competitions(request):
+    data = {
+        'comps': Competition.objects.all(),
+    }
+    return render_to_response('competitions/competitions.html', data, RequestContext(request))
+
+
 def competition(request, slug):
     comp = get_object_or_404(Competition.objects.prefetch_related('challenges'), slug=slug)
     assert isinstance(comp, Competition)

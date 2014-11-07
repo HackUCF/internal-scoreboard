@@ -46,7 +46,10 @@ table > tbody tr:nth-of-type(even) {
     background: #fafafa;
 }
 
-#challenges {
+#challenges, #competitions {
     width: 500px;
+}
+
+#challenges {
     margin: auto;
 }
