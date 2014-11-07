@@ -1,0 +1,22 @@
+nav ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1.5em;
+}
+nav li:first-child:before {
+    content: '';
+}
+nav li:before {
+    content: ' | ';
+}
+nav li {
+    display: inline-block;
+}
+
+.login-row {
+    text-align: right;
+}
+
+#scoreboard > tbody tr:nth-child(1){
+    background: #fafafa;
+}

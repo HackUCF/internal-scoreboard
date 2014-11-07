@@ -3,7 +3,6 @@ from django.template import RequestContext
 from competitions.models import Competition
 
 
-# Create your views here.
 def index(request):
     data = {
         'competitions': Competition.objects.all()

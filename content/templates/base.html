@@ -10,10 +10,15 @@
     <header>
         <nav>
             <ul>
-                <li>home</li>
-                <li>scoreboard</li>
-                <li>challenges</li>
-                <li>login</li>
+                <li><a href="/">home</a></li>
+                <li><a href="{% url 'competitions.scoreboard' %}">scoreboard</a></li>
+                <li><a href="{# {% url 'competitions.competitions' %} #}">challenges</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="#">profile</a></li>
+                    <li><a href="{% url 'logout' %}">logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">login</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>

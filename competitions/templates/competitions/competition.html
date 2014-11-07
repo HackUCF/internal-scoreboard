@@ -2,14 +2,16 @@
 {% block title %}Competition - {{ comp.name }}{% endblock %}
 {% block content %}
     <h1>{{ comp.name }}</h1>
-    <h2>Challenges</h2>
-    {% if challenges %}
-        <ul>
-            {% for challenge in challenges %}
-                <li><a href="#">{{ challenge.name }}</a></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>nothing to hack :(</p>
-    {% endif %}
+    <section id="challenges">
+        <h2>Challenges</h2>
+        {% if challenges %}
+            <ul>
+                {% for challenge in challenges %}
+                    <li><a href="#">{{ challenge.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>nothing to hack :(</p>
+        {% endif %}
+    </section>
 {% endblock %}

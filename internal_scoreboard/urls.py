@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'internal_scoreboard.views.home', name='home'),
@@ -8,5 +7,11 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'content.views.index'),
-    url(r'^competition/(?P<slug>[\w\d\-]+)/', 'competitions.views.competition', name='competitions.competition')
+
+    url(r'^login$', 'django.contrib.auth.views.login', name='login'),
+    url(r'^logout$', 'django.contrib.auth.views.logout', name='logout'),
+
+    url(r'^scoreboard$', 'competitions.views.scoreboard', name='competitions.scoreboard'),
+    url(r'^competition/(?P<slug>[\w\d\-]+)/$', 'competitions.views.competition', name='competitions.competition'),
 )
+

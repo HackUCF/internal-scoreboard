@@ -1,4 +1,4 @@
-"""
+'''
 Django settings for internal_scoreboard project.
 
 For more information on this file, see
@@ -6,10 +6,11 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
-"""
+'''
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -54,6 +55,16 @@ ROOT_URLCONF = 'internal_scoreboard.urls'
 
 WSGI_APPLICATION = 'internal_scoreboard.wsgi.application'
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
+)
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
