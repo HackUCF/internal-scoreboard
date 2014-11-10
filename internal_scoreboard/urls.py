@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^scoreboard$', 'competitions.views.scoreboard', name='competitions.scoreboard'),
     url(r'^competitions/$', 'competitions.views.competitions', name='competitions.competitions'),
     url(r'^competitions/(?P<slug>[\w\d\-]+)/$', 'competitions.views.competition', name='competitions.competition'),
+    url(r'^api/challenge$', 'competitions.views.challenge_ajax', name='competitions.challenge_ajax')
 )
 

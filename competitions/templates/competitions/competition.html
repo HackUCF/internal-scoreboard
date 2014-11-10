@@ -25,11 +25,27 @@
             <p>nothing to hack :(</p>
         {% endif %}
     </section>
+    <div class="detail-template">
+
+    </div>
 {% endblock %}
 {% block extra_scripts %}
     <script>
         $(document).ready(function() {
-
+            $('.challenge').on('click', function(event) {
+                event.preventDefault();
+                var $this = $(this);
+                var $nextElement = $this.next();
+                if ($nextElement && $nextElement.hasClass('challenge-detail')) {
+                    $nextElement.remove();
+                }
+                else {
+                    var xhr = $.get("{% url 'competitions.challenge_ajax' %}", {'id': $this.data('id')});
+                    xhr.done(function(html) {
+                        $this.after(html);
+                    });
+                }
+            });
         });
     </script>
 {% endblock %}

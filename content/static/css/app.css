@@ -6,3 +6,7 @@ table.clickable > tbody tr {
 #challenges {
     margin: auto;
 }
+
+table.clickable > tbody tr.challenge-detail {
+    cursor: default;
+}

@@ -27,6 +27,8 @@ class ChallengeCategory(models.Model):
 
 class Challenge(models.Model):
     name = models.CharField(max_length=128)
+    url = models.URLField(blank=True)
+    description = models.CharField(max_length=2048, blank=True)
     value = models.IntegerField('Point Value')
     competition = models.ForeignKey(Competition, related_name='challenges')
     category = models.ForeignKey(ChallengeCategory, related_name='challenge', blank=True, null=True)
@@ -34,3 +36,14 @@ class Challenge(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Hint(models.Model):
+    text = models.CharField(max_length=2048)
+    challenge = models.ForeignKey(Challenge, related_name='hints')
+
+    def __str__(self):
+        if len(self.text) > 43:
+            return self.text[:40] + '...'
+        else:
+            return self.text

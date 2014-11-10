@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
+from django.http import HttpResponseBadRequest
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
+from django.views.decorators.http import require_GET
 
-from competitions.models import Competition
+from competitions.models import Competition, Challenge
 
 
 def scoreboard(request):
@@ -31,3 +33,19 @@ def competition(request, slug):
 
     }
     return render_to_response('competitions/competition.html', data, RequestContext(request))
+
+
+@require_GET
+def challenge_ajax(request):
+    challenge_id = request.GET.get('id', None)
+    try:
+        challenge = get_object_or_404(Challenge.objects.prefetch_related('hints'), id=int(challenge_id))
+        data = {
+            'challenge': challenge,
+            'hints': challenge.hints.all()
+        }
+        return render_to_response('competitions/challenge_ajax.html', data)
+    except ValueError:
+        pass
+
+    return HttpResponseBadRequest()
