@@ -5,7 +5,7 @@
     <section>
         <h2 class="center">Challenges</h2>
         {% if challenges %}
-            <table id="challenges">
+            <table id="challenges" class="clickable">
             <thead>
                 <tr>
                     <th>name</th>
@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             {% for challenge in challenges %}
-                <tr>
+                <tr class="challenge" data-id="{{ challenge.id }}">
                     <td>{{ challenge.name }}</td>
                     <td>{{ challenge.category }}</td>
                     <td>{{ challenge.value }}</td>
@@ -25,4 +25,11 @@
             <p>nothing to hack :(</p>
         {% endif %}
     </section>
+{% endblock %}
+{% block extra_scripts %}
+    <script>
+        $(document).ready(function() {
+
+        });
+    </script>
 {% endblock %}

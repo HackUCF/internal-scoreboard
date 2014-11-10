@@ -1,0 +1,8 @@
+/* page-specific stuff */
+table.clickable > tbody tr {
+    cursor: pointer;
+}
+
+#challenges {
+    margin: auto;
+}
