@@ -5,6 +5,6 @@ from competitions.models import Competition
 
 def index(request):
     data = {
-        'competitions': Competition.objects.all()
+        'comps': Competition.objects.all()
     }
     return render_to_response('index.html', data, RequestContext(request))

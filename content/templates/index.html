@@ -1,16 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Internal Scoreboard{% endblock %}
 {% block content %}
-<h1>Hack@UCF Internal Scoreboard</h1>
-<p>hack things here</p>
-<h2>Competitions</h2>
-{% if competitions %}
-    <ul>
-        {% for comp in competitions %}
-            <li><a href="{{ comp.get_absolute_url }}">{{ comp.name }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>nothing to hack :(</p>
-{% endif %}
+    <h1>Hack@UCF Internal Scoreboard</h1>
+    <header><h2>Competitions</h2></header>
+    <p>go hack things here</p>
+    {% if comps %}
+        {% include 'competitions/comps_table.html' %}
+    {% else %}
+        <p>nothing to hack :(</p>
+    {% endif %}
 {% endblock %}

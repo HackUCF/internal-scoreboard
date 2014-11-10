@@ -1,0 +1,20 @@
+<table id="competitions">
+    <thead>
+    <tr>
+        <th>name</th>
+        <th>type</th>
+    </tr>
+    </thead>
+    {% for comp in comps %}
+        <tr data-href="{{ comp.get_absolute_url }}">
+            <td>{{ comp.name }}</td>
+            <td>
+                {% if comp.internal %}
+                    internal
+                {% else %}
+                    external
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
