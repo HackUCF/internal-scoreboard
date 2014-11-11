@@ -17,3 +17,11 @@ table tr.challenge-detail {
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
 }
+
+table.clickable > tbody tr:hover {
+    background: #eee;
+}
+
+table.clickable > tbody tr.challenge-detail:hover {
+    background: inherit;
+}

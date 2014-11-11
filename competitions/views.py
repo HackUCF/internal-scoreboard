@@ -71,7 +71,13 @@ def challenge_solve_ajax(request):
         form = SolveForm(request.POST)
 
     if form.is_valid():
-        pass
+        if request.user.is_superuser:
+            data = {
+                'user': form.cleaned_data['user']
+            }
+            return render_to_response('competitions/ajax/solved.html', data, RequestContext(request))
+        else:
+            return render_to_response('competitions/ajax/solve_submitted.html')
 
     response = render_to_response('competitions/ajax/challenge.html', {'form': form}, RequestContext(request))
     response.status_code = 400

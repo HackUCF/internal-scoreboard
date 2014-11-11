@@ -5,6 +5,11 @@
         <small class="internal">(Internal)</small>{% else %}
         <small class="external">(External)
         </small>{% endif %}</h1>
+    <nav class="breadcrumbs">
+        <a href="/">Home</a>
+        <a href="{% url 'competitions.competitions' %}">Competitions</a>
+        <a class="current" href="#">{{ comp.name }}</a>
+    </nav>
     <section>
         <h2 class="center">Challenges</h2>
         {% if challenges %}
@@ -61,11 +66,13 @@
                 var $target = $(event.target);
                 var $xhr = $.post($target.attr('action'), $target.serialize());
                 $xhr.done(function (response) {
-                    alert(response);
+                    // put message on top of the form + reflow alerts
+                    $target.before(response);
+                    $(document).foundation('alert', 'reflow');
                 });
                 $xhr.error(function (response) {
                     // extract the form...
-                    var responseForm= $(response.responseText).find('form').html();
+                    var responseForm = $(response.responseText).find('form').html();
                     $target.parents('.challenge-detail').find('form').html(responseForm);
                 });
 

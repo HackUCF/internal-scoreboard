@@ -10,9 +10,7 @@
                 <form action="{% url 'competitions.challenge_ajax' %}" method="post">
                     <fieldset>
                         <legend>Report solution</legend>
-                        {% if request.user.is_superuser %}
-                            <p>Did you solve it?</p>
-                        {% endif %}
+                        <p>Did you solve it?</p>
                         <input class="button small" type="submit" value="Solved!"/>
                     </fieldset>
                 </form>
