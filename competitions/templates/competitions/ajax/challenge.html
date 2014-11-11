@@ -1,0 +1,41 @@
+{% load markdown_deux_tags %}
+<tr class="challenge-detail">
+    <td colspan="4">
+        <div class="container">
+            {% if request.user.is_superuser %}
+                {% include 'competitions/ajax/admin_report_solve.html' %}
+            {% elif solved %}
+                <p>Already solved!</p>
+            {% else %}
+                <form action="{% url 'competitions.challenge_ajax' %}" method="post">
+                    <fieldset>
+                        <legend>Report solution</legend>
+                        {% if request.user.is_superuser %}
+                            <p>Did you solve it?</p>
+                        {% endif %}
+                        <input class="button small" type="submit" value="Solved!"/>
+                    </fieldset>
+                </form>
+            {% endif %}
+            <dl>
+                {% if challenge.url %}
+                    <dt>URL</dt>
+                    <dd><a href="{{ challenge.url }}">{{ challenge.url }}</a></dd>
+                {% endif %}
+                {% if challenge.description %}
+                    <dt>Text</dt>
+                    <dd>{{ challenge.description|markdown }}</dd>
+                {% endif %}
+                {% if hints %}
+                    <dt>Hints</dt>
+                    <dd class="hints">
+                        <ul>
+                            {% for hint in challenge.hints.all %}
+                                <li>{{ hint.text|markdown:"trusted" }}</li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endif  %}
+            </dl>
+        </div>
+</tr>

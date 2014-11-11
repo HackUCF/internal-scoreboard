@@ -1,0 +1,10 @@
+<form action="{% url 'competitions.ajax.solve' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Report solution (admin)</legend>
+        {{ form.as_p }}
+        <div>
+            <input class="button small" type="submit" value="Solved!"/>
+        </div>
+    </fieldset>
+</form>

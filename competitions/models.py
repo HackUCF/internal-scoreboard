@@ -32,7 +32,7 @@ class Challenge(models.Model):
     value = models.IntegerField('Point Value')
     competition = models.ForeignKey(Competition, related_name='challenges')
     category = models.ForeignKey(ChallengeCategory, related_name='challenge', blank=True, null=True)
-    solver = models.ManyToManyField(User, related_name='solved_challenges', blank=True)
+    solvers = models.ManyToManyField(User, related_name='solved_challenges', blank=True)
 
     def __str__(self):
         return self.name

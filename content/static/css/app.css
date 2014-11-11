@@ -5,8 +5,15 @@ table.clickable > tbody tr {
 
 #challenges {
     margin: auto;
+    width: 100%;
 }
 
 table.clickable > tbody tr.challenge-detail {
     cursor: default;
+}
+
+table tr.challenge-detail {
+    background: white;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 }
