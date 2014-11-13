@@ -8,11 +8,18 @@ eyeball point contribution and participation. The site can also be a source of
 The vocab used inside the site is as made as generic as possible so that this application can be forked for use by
 any type of group that uses point-based contributions, with minimal modifications necessary.
 
+**The master branch is currently unstable!** After the first point release, the master branch will be the latest stable branch.
+
+Features
+--------
+Completed features from our wish list:
+
+* Ability for users to self-report solves on public CTFs
+
 Wish List
 ---------
 Sampled from [https://github.com/HackUCF/research/issues/5#issuecomment-58429679](https://github.com/HackUCF/research/issues/5#issuecomment-58429679):
 
-* Ability for users to self-report solves on public CTFs
 * Ability for users to self-report assists or helps for the main solvers (some intellectual contribution)
 * Scoring/sorting system - by assists, solves, category, etc
 * Use OAuth for login
