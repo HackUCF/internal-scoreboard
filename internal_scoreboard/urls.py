@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^login$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout$', 'django.contrib.auth.views.logout', name='logout'),
 
+    url(r'^challenges$', 'competitions.views.challenges', name='competitions.challenges'),
     url(r'^scoreboard$', 'competitions.views.scoreboard', name='competitions.scoreboard'),
     url(r'^competitions/$', 'competitions.views.competitions', name='competitions.competitions'),
     url(r'^competitions/(?P<slug>[\w\d\-]+)/$', 'competitions.views.competition', name='competitions.competition'),

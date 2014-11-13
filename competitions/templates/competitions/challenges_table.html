@@ -1,0 +1,24 @@
+<table id="challenges" class="clickable">
+    <thead>
+    <tr>
+        <th>name</th>
+        {% if show_competition %}
+            <th>competition</th>
+        {% endif %}
+        <th>category</th>
+        <th>points</th>
+        <th>solves</th>
+    </tr>
+    </thead>
+    {% for challenge in challenges %}
+        <tr class="challenge" data-id="{{ challenge.id }}">
+            <td>{{ challenge.name }}</td>
+            {% if show_competition %}
+                <td>{{ challenge.competition }}</td>
+            {% endif %}
+            <td>{{ challenge.category }}</td>
+            <td>{{ challenge.value }}</td>
+            <td>{{ challenge.num_solves }}</td>
+        </tr>
+    {% endfor %}
+</table>

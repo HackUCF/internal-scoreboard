@@ -1,7 +1,7 @@
 <li class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}"><a href="/">home</a></li>
 <li class="{% if request.resolver_match.url_name == 'competitions.scoreboard' %}active{% endif %}"><a href="{% url 'competitions.scoreboard' %}">scoreboard</a></li>
 <li class="{% if request.resolver_match.url_name == 'competitions.competitions' %}active{% endif %}"><a href="{% url 'competitions.competitions' %}">competitions</a></li>
-<li class="{% if request.resolver_match.url_name == 'competitions.challenges' or request.resolver_match.url_name == 'competitions.competition' %}active{% endif %}"><a href="">challenges</a></li>
+<li class="{% if request.resolver_match.url_name == 'competitions.challenges' or request.resolver_match.url_name == 'competitions.competition' %}active{% endif %}"><a href="{% url 'competitions.challenges' %}">challenges</a></li>
 {% if request.user.is_authenticated %}
     <li><a href="#">profile</a></li>
     <li><a href="{% url 'logout' %}">logout</a></li>

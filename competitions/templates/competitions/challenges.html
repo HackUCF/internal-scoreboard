@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Challenges{% endblock %}
+{% block content %}
+    <h1>Challenges</h1>
+    <p class="description">{# todo: Paginated #} Table of all current candidate challenges.</p>
+    <section>
+        {% if challenges %}
+            {% include 'competitions/challenges_table.html' %}
+        {% else %}
+            <p>nothing to hack :(</p>
+        {% endif %}
+    </section>
+{% endblock %}
+{% block extra_scripts %}
+    <script src="{% static 'js/challenges.js' %}"></script>
+{% endblock %}

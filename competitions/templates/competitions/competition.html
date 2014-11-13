@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Competition - {{ comp.name }}{% endblock %}
 {% block content %}
     <h1>{{ comp.name }} {% if comp.internal %}
@@ -13,24 +14,7 @@
     <section>
         <h2 class="center">Challenges</h2>
         {% if challenges %}
-            <table id="challenges" class="clickable">
-                <thead>
-                <tr>
-                    <th>name</th>
-                    <th>category</th>
-                    <th>points</th>
-                    <th>solves</th>
-                </tr>
-                </thead>
-                {% for challenge in challenges %}
-                    <tr class="challenge" data-id="{{ challenge.id }}">
-                        <td>{{ challenge.name }}</td>
-                        <td>{{ challenge.category }}</td>
-                        <td>{{ challenge.value }}</td>
-                        <td>{{ challenge.num_solves }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
+            {% include 'competitions/challenges_table.html' %}
         {% else %}
             <p>nothing to hack :(</p>
         {% endif %}
@@ -40,43 +24,5 @@
     </div>
 {% endblock %}
 {% block extra_scripts %}
-    <script>
-        $(document).ready(function () {
-            $('.challenge').on('click', function (event) {
-                event.preventDefault();
-                var $this = $(this);
-                var $nextElement = $this.next();
-                if ($nextElement && $nextElement.hasClass('challenge-detail')) {
-                    $nextElement.remove();
-                }
-                else {
-                    var xhr = $.get("{% url 'competitions.challenge_ajax' %}", {'id': $this.data('id')});
-                    xhr.done(function (html) {
-                        var $html = $(html);
-                        var $container = $html.find('.container');
-                        $container.hide();
-                        $this.after($html);
-                        $container.fadeIn('fast');
-                    });
-                }
-            });
-
-            $('#challenges').on('submit', '.challenge-detail form', function (event) {
-                event.preventDefault();
-                var $target = $(event.target);
-                var $xhr = $.post($target.attr('action'), $target.serialize());
-                $xhr.done(function (response) {
-                    // put message on top of the form + reflow alerts
-                    $target.before(response);
-                    $(document).foundation('alert', 'reflow');
-                });
-                $xhr.error(function (response) {
-                    // extract the form...
-                    var responseForm = $(response.responseText).find('form').html();
-                    $target.parents('.challenge-detail').find('form').html(responseForm);
-                });
-
-            });
-        });
-    </script>
+    <script src="{% static 'js/challenges.js' %}"></script>
 {% endblock %}

@@ -18,6 +18,14 @@ def scoreboard(request):
     return render_to_response('competitions/scoreboard.html', data, RequestContext(request))
 
 
+def challenges(request):
+    data = {
+        'challenges': Challenge.objects.only('name', 'competition', 'category', 'value', 'solvers').annotate(num_solves=Count('solvers')),
+        'show_competition': True
+    }
+    return render_to_response('competitions/challenges.html', data, RequestContext(request))
+
+
 def competitions(request):
     data = {
         'comps': Competition.objects.all(),
@@ -48,7 +56,8 @@ def challenge_ajax(request):
         data = {
             'challenge': challenge,
             'hints': challenge.hints.all(),
-            'solved': solved
+            'solved': solved,
+            'num_cols': 4
         }
 
         form_initial = {'challenge': challenge}
