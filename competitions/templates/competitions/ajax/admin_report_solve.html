@@ -2,6 +2,9 @@
     {% csrf_token %}
     <fieldset>
         <legend>Report solution (admin)</legend>
+        {% if solved %}
+            <p>(You already solved this challenge)</p>
+        {% endif %}
         {{ form.as_p }}
         <div>
             <input class="button small" type="submit" value="Solved!"/>

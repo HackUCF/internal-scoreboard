@@ -71,11 +71,15 @@ def challenge_solve_ajax(request):
         form = SolveForm(request.POST)
 
     if form.is_valid():
+        challenge = form.cleaned_data['challenge']
+
         if request.user.is_superuser:
+            user = form.cleaned_data['user']
+            challenge.solvers.add(user)
             data = {
-                'user': form.cleaned_data['user']
+                'user': user
             }
-            return render_to_response('competitions/ajax/solved.html', data, RequestContext(request))
+            return render_to_response('competitions/ajax/admin_solved.html', data, RequestContext(request))
         else:
             return render_to_response('competitions/ajax/solve_submitted.html')
 
