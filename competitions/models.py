@@ -47,3 +47,15 @@ class Hint(models.Model):
             return self.text[:40] + '...'
         else:
             return self.text
+
+
+class CompetingUser(User):
+    class Meta:
+        proxy = True
+
+    def get_points(self):
+        # todo: hopefully
+        points = 0
+        for challenge in self.solved_challenges.only('value'):
+            points += challenge.value
+        return points

@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render_to_response, get_object_or_404
@@ -6,14 +6,22 @@ from django.template import RequestContext
 from django.views.decorators.http import require_GET, require_POST
 from competitions.forms import AdminSolveForm, SolveForm
 
-from competitions.models import Competition, Challenge
+from competitions.models import Competition, Challenge, CompetingUser
 
 
 def scoreboard(request):
     # top 20
+    paginator = Paginator(CompetingUser.objects.all(), 25)
+
+    page = request.GET.get('page', 1)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
     data = {
-        'top_20': User.objects.all()[:20],
-        'more_than_20': User.objects.all().count() > 20
+        'users': users
     }
     return render_to_response('competitions/scoreboard.html', data, RequestContext(request))
 

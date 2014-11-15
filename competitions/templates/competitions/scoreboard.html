@@ -11,13 +11,30 @@
             </tr>
             </thead>
             <tbody>
-                {% for user in top_20 %}
+                {% for user in users %}
                     <tr>
                         <td>{{ user.username }}</td>
-                        <td>{{ user.get_score }}</td>
+                        <td>{{ user.get_points }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        {% if users.paginator.num_pages > 1 %}
+            <div class="pagination row">
+                {% if users.has_previous %}
+                    <div class="small-4 columns">
+                        <a href="?page={{ users.previous_page_number }}">previous</a>
+                    </div>
+                {% endif %}
+                <div class="current small-4 small-centered columns">
+                    Page {{ users.number }} of {{ users.paginator.num_pages }}
+                </div>
+                {% if users.has_next %}
+                    <div class="small-4 columns">
+                        <a href="?page={{ users.next_page_number }}">next</a>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
     </section>
 {% endblock %}
